@@ -1,28 +1,29 @@
 # Etapa de build
 FROM node:18-alpine AS build
-WORKDIR /app
 
-# Instalar dependencias del sistema para compilación nativa
+# Instalar dependencias del sistema
 RUN apk add --no-cache python3 make g++
 
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+WORKDIR /app
 
-# Copiar archivos de configuración primero
-COPY angular.json ./
-COPY esbuild.config.js ./
+# Copiar package files
+COPY package*.json ./
+COPY scripts/ ./scripts/
+
+# Instalar dependencias y copiar imágenes de leaflet
+RUN npm install --legacy-peer-deps && npm run postinstall
 
 # Copiar el resto de la aplicación
 COPY . .
 
-# Ejecutar el script de copia y build
+# Build de producción
 RUN npm run build:prod
 
 # Etapa de producción
 FROM nginx:alpine
 
 # Copiar archivos construidos
-COPY --from=build /app/dist/tu-app-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/delivery-app /usr/share/nginx/html
 
 # Configuración de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
