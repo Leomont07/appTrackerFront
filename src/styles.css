@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'primeicons/primeicons.css';
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+
+.map-container {
+  width: 100%;        /* ocupa todo el ancho disponible */
+  max-width: 800px;   /* límite de ancho opcional */
+  height: 400px;      /* alto fijo */
+  margin: 1rem auto;  /* centrado */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;   /* 🔥 evita que el mapa se desborde */
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
