@@ -3,17 +3,13 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Copiar package files y scripts
+# Copiar package files
 COPY package*.json ./
-COPY scripts/ ./scripts/
 
 # Instalar dependencias
 RUN npm install --legacy-peer-deps
 
-# Ejecutar scripts para copiar imágenes y arreglar CSS
-RUN npm run postinstall
-
-# Copiar el resto de la aplicación
+# Copiar el resto de la aplicación (incluyendo assets)
 COPY . .
 
 # Build de producción

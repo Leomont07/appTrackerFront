@@ -1,4 +1,4 @@
-/* leaflet-custom.css - CSS completo de Leaflet con URLs corregidas */
+/* leaflet-custom.css - CSS modificado con paths locales */
 .leaflet-container {
   background: #ddd;
   outline: 0;
@@ -11,29 +11,7 @@
   filter: inherit !important;
 }
 
-.leaflet-pane { z-index: 400; }
-.leaflet-tile-pane { z-index: 200; }
-.leaflet-overlay-pane { z-index: 400; }
-.leaflet-shadow-pane { z-index: 500; }
-.leaflet-marker-pane { z-index: 600; }
-.leaflet-tooltip-pane { z-index: 650; }
-.leaflet-popup-pane { z-index: 700; }
-
-.leaflet-map-pane canvas { z-index: 100; }
-.leaflet-map-pane svg { z-index: 200; }
-
-.leaflet-zoom-box {
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px dotted #38f;
-  border-radius: 4px;
-}
-
-.leaflet-control-layers {
-  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-  background: #fff;
-  border-radius: 5px;
-}
-
+/* Control Layers */
 .leaflet-control-layers-toggle {
   background-image: url('/assets/images/layers.png');
   background-size: cover;
@@ -45,6 +23,31 @@
   background-image: url('/assets/images/layers-2x.png');
 }
 
+/* Marker Icon */
+.leaflet-marker-icon {
+  background-image: url('/assets/images/marker-icon.png');
+  background-size: 25px 41px;
+  width: 25px;
+  height: 41px;
+  margin-left: -12px;
+  margin-top: -41px;
+}
+
+.leaflet-retina .leaflet-marker-icon {
+  background-image: url('/assets/images/marker-icon-2x.png');
+}
+
+/* Marker Shadow */
+.leaflet-marker-shadow {
+  background-image: url('/assets/images/marker-shadow.png');
+  background-size: 41px 41px;
+  width: 41px;
+  height: 41px;
+  margin-left: -12px;
+  margin-top: -41px;
+}
+
+/* Zoom Controls */
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
   background-color: #fff;
@@ -74,6 +77,7 @@
   border-bottom: none;
 }
 
+/* Popup */
 .leaflet-popup-content-wrapper {
   background: #fff;
   border-radius: 12px;
@@ -87,41 +91,6 @@
 
 .leaflet-popup-tip {
   background: #fff;
-}
-
-.leaflet-container a.leaflet-popup-close-button {
-  color: #757575;
-  font: 16px/14px Tahoma, Verdana, sans-serif;
-  font-weight: bold;
-  padding: 4px 4px 0 0;
-  text-decoration: none;
-}
-
-.leaflet-container a.leaflet-popup-close-button:hover {
-  color: #585858;
-}
-
-.leaflet-container .leaflet-marker-pane img {
-  margin: -41px 0 0 -12px !important;
-}
-
-.leaflet-container .leaflet-marker-icon {
-  background-image: url('/assets/images/marker-icon.png');
-  background-size: 25px 41px;
-  width: 25px;
-  height: 41px;
-}
-
-.leaflet-retina .leaflet-container .leaflet-marker-icon {
-  background-image: url('/assets/images/marker-icon-2x.png');
-}
-
-.leaflet-container .leaflet-marker-shadow {
-  background-image: url('/assets/images/marker-shadow.png');
-  background-size: 41px 41px;
-  width: 41px;
-  height: 41px;
-  margin: 0 0 0 -41px;
 }
 
 /* Cluster markers */
