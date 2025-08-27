@@ -7,7 +7,6 @@ import { ApiService } from '../api.service';
 import { SocketService } from '../socket.service';
 import { AuthService } from '../auth.service';
 import * as L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 
 // Fix para los iconos de Leaflet (problema común)
 delete (L.Icon.Default.prototype as any)._getIconUrl;
