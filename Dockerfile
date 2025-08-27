@@ -19,7 +19,7 @@ RUN npm run build:prod
 FROM nginx:alpine
 
 # Copiar archivos construidos
-COPY --from=build /app/dist/tu-app-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/delivery-app /usr/share/nginx/html
 
 # Configuración de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
