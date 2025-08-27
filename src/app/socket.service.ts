@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from './environment.prod';
 
 @Injectable({ providedIn: 'root' })
 export class SocketService {
   private socket: Socket;
+  private baseUrl = environment.apiUrl;
 
   constructor(private authService: AuthService) {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io(this.baseUrl, {
       auth: {
         token: localStorage.getItem('authToken'),
         username: this.authService.getUsername()
