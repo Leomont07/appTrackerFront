@@ -1,4 +1,4 @@
-app = "delivery-frontend-tunombre"
+app = "delivery-app"
 
 [[services]]
   internal_port = 80
