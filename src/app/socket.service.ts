@@ -10,13 +10,17 @@ export class SocketService {
   private baseUrl = environment.socketUrl;
 
   constructor(private authService: AuthService) {
+    const token = localStorage.getItem('authToken');
+    const username = this.authService.getUsername();
+
     this.socket = io(this.baseUrl, {
       transports: ['websocket', 'polling'],
       auth: {
-        token: localStorage.getItem('authToken'),
-        username: this.authService.getUsername()
+        token: token,
+        username: username
       }
     });
+    console.log('Socket connecting with:', { token, username });
   }
 
   sendLocation(userId: string, lat: number, lng: number) {
