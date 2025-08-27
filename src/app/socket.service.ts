@@ -7,10 +7,11 @@ import { environment } from './environment.prod';
 @Injectable({ providedIn: 'root' })
 export class SocketService {
   private socket: Socket;
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.socketUrl;
 
   constructor(private authService: AuthService) {
     this.socket = io(this.baseUrl, {
+      transports: ['websocket', 'polling'],
       auth: {
         token: localStorage.getItem('authToken'),
         username: this.authService.getUsername()
