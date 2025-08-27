@@ -1,27 +1,22 @@
-# Etapa de build
+# Dockerfile CORREGIDO
 FROM node:18-alpine AS build
-
 WORKDIR /app
-
-# Copiar package files
 COPY package*.json ./
-
-# Instalar dependencias
 RUN npm install --legacy-peer-deps
-
-# Copiar el resto de la aplicación (incluyendo assets)
 COPY . .
+RUN npm run build --configuration production
 
-# Build de producción
-RUN npm run build:prod
-
-# Etapa de producción
 FROM nginx:alpine
 
-# Copiar archivos construidos
+# ¡CORREGIR ESTA LÍNEA!
+# La ruta correcta es: /app/dist/delivery-app/browser/
 COPY --from=build /app/dist/delivery-app/browser /usr/share/nginx/html
 
 # Configuración de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Verificar que se copió correctamente (opcional para debug)
+RUN ls -la /usr/share/nginx/html/
+
 EXPOSE 80
+
